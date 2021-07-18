@@ -6,7 +6,6 @@ const initialNotesState={
   notes:[]
 };
 
-
 const notesReducer=(prevstate,action)=>{
   switch(action.type){
     case 'ADD_NOTE':{
@@ -21,7 +20,6 @@ const notesReducer=(prevstate,action)=>{
     }
   }
 };
-
 function App() {
   const [noteInput, setNoteInput] = useState('');
   const [notesState,dispatch]=useReducer(notesReducer,initialNotesState)
@@ -43,7 +41,11 @@ function App() {
         <textarea value={noteInput} onChange={event => setNoteInput(event.target.value)} placeholder='Create a new note...'></textarea>
         <button>Add</button>
       </form>
-      {noteInput}
+      {notesState.notes.map(note=>(
+        <div className="note">
+          <pre className="text">{note.text}</pre>
+        </div>
+      ))}
     </div>
   );
 }
