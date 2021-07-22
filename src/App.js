@@ -21,18 +21,21 @@ const notesReducer=(prevstate,action)=>{
   }
 };
 function App() {
+  const [count, setCount] = useState(1);
   const [noteInput, setNoteInput] = useState('');
-  const [notesState,dispatch]=useReducer(notesReducer,initialNotesState)
-
+  const [notesState,dispatch]=useReducer(notesReducer,initialNotesState);
   const addNote= event =>{
     event.preventDefault();
     if(!noteInput){
       return ;
     }
     const newNote={
+      id:count,
       text:noteInput,
+      rotate: Math.floor(Math.random()*20)
     }
     dispatch({ type:'ADD_NOTE',payload:newNote})
+    setCount(count+1)
   };
   return (
     <div className='app'>
@@ -42,7 +45,7 @@ function App() {
         <button>Add</button>
       </form>
       {notesState.notes.map(note=>(
-        <div className="note">
+        <div className="note" style={{transform: `rotate(${note.rotate}deg)`}}>
           <pre className="text">{note.text}</pre>
         </div>
       ))}
