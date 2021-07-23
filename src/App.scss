@@ -66,5 +66,8 @@ h1{
         width: 100%;
         white-space: pre-wrap;
         overflow-y: scroll;
+        &::-webkit-scrollbar{
+            display: none;
+        }
     }
 }
