@@ -69,5 +69,16 @@ h1{
         &::-webkit-scrollbar{
             display: none;
         }
+        .close{
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            right: 15px;
+            transition: transform .3s ease;
+
+            &:hover{
+                transform: scale(1.5);
+            }
+        }
     }
 }
