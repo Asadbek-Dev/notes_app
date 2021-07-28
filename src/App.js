@@ -24,6 +24,8 @@ const notesReducer = (prevState, action) => {
         totalNotes:prevState.notes.length-1,
         notes:prevState.notes.filter(note=>note.id !== action.payload.id)
       }
+      console.log('After DELETE_NOTE',newState);
+      return newState;
     }
   }
 };
@@ -46,7 +48,8 @@ function App() {
   };
   return (
     <div className='app'>
-      <h1>Sticky Notes</h1>
+      <h1>Sticky Notes ({notesState.totalNotes})</h1>
+      <span>{notesState.totalNotes >0 ? `Last note created: ${notesState.lastNoteCreated}`:''}</span>
       <form onSubmit={addNote} className='note-form'>
         <textarea value={noteInput} onChange={event => setNoteInput(event.target.value)} placeholder='Create a new note...'></textarea>
         <button>Add</button>
